@@ -6,6 +6,7 @@
   --paragraph-text-color: #757575;
   --rectangle-color: #afb1b8;
   --rectangle-background-color: #f5f4fa;
+  --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 body {
   font-family: "Raleway", sans-serif;
@@ -67,6 +68,7 @@ img {
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  padding: 30px;
 }
 .close-modal {
   position: absolute;
@@ -310,7 +312,29 @@ img {
 .doing-img .photo:not(:last-child) {
   margin-right: 30px;
 }
+.doing-img .photo {
+  position: relative;
+}
+.work-section .text {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.03em;
+  color: #fff;
+  text-transform: uppercase;
+}
 
+.textbox {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 70px;
+  width: 370px;
+  background: rgba(47, 48, 58, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 /* --------our team--------- */
 .team {
   background-color: var(--secondary-background-color);
@@ -484,8 +508,46 @@ img {
   margin-top: -30px;
 }
 .card-set .link {
-  box-sizing: border-box;
+  display: block;
   text-decoration: none;
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-set .wrapper {
+  position: relative;
+}
+.card-set .wrapper-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 63px 24px;
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  color: var(--primary-background-color);
+  opacity: 0;
+  transition: opacity 250ms var(--transition-timing-function);
+}
+.card-set .link:hover .wrapper-text {
+  opacity: 1;
+}
+.wrapper::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 150, 243, 0.9);
+  opacity: 0;
+  transition: opacity 250ms var(--transition-timing-function),
+    transform 250ms var(--transition-timing-function);
+  transform: translateY(100%);
+}
+.card-set .link:hover .wrapper::before {
+  opacity: 1;
+  transform: translateY(0);
 }
 .card-set .link:hover,
 .card-set .link:focus {
